@@ -60,7 +60,7 @@ const SingleProduct = () => {
       <div className="product-details-view px-8 py-8 flex flex-col items-center flex-grow min-w-[450px">
         <div className="product-details flex flex-col gap-6 w-full max-w-[400px]">
           <div className="heading">
-            <h1 className='product-Name text-2xl font-semibold flex items-center gap-4'>{selectedProduct.title} <span className='rating text-sm flex items-center'>{selectedProduct.rating} ⭐</span> </h1>
+            <h1 className='product-name-box text-2xl font-semibold flex items-center gap-4'> <span className='product-name'>{selectedProduct.title}</span> <span className='rating text-sm flex items-center'>{selectedProduct.rating} ⭐</span> </h1>
             <p className="category">{selectedProduct.category}</p>
           </div>
           <p className='description'>{selectedProduct.description}</p>
