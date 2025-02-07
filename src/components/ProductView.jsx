@@ -45,7 +45,7 @@ const ProductView = ({ products }) => {
         {
           products.map((itemData) => {
             return <div className="data-container flex flex-col justify-center items-center px-4 py-4 w-80 sm:w-72 gap-2 border shadow-md rounded-lg border-none justify-self-center max-h-96 cursor-pointer" key={itemData.id}
-              onClick={(e) => HandleViewProduct(e.target, e.currentTarget, itemData.id)}
+              onClick={() => HandleViewProduct(itemData.id)}
             >
               <div className="img-box object-contain w-[90%] aspect-[1/1.2] overflow-hidden flex justify-center">
                 <img src={itemData.thumbnail} alt="" className='object-cover' />
