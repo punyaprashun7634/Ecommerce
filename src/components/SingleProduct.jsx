@@ -37,14 +37,6 @@ const SingleProduct = () => {
 
   const { id } = useParams();
   const [selectedProduct, setSelectedProduct] = useState({});
-  // const products = useSelector((state) => state.product.product);
-
-  // const getSelectedProduct = (id) => {
-  //   for (let i = 0; i < products.length; i++) {
-  //     if (products[i].id == id) return products[i];
-  //   }
-  // }
-  // const selectedProduct = getSelectedProduct(id);
 
   useEffect(() => {
     const fetchProduct = async () => {
