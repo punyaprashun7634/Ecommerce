@@ -1,15 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { CiHeart } from 'react-icons/ci';
 import { FaHeart } from 'react-icons/fa';
 import { HiOutlineShoppingBag } from 'react-icons/hi2';
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { addToWishlist, removeFromWishlist } from '../store/wishlistSlice';
 import { addToCart } from '../store/cartSlice';
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
-  // const Navigate = useNavigate();
   const wishlists = useSelector((state) => state.wishlist);
   const HandleWishlist = (e, item) => {
     e.stopPropagation();
@@ -37,16 +36,33 @@ const SingleProduct = () => {
   }
 
   const { id } = useParams();
-  const products = useSelector((state) => state.product.product);
+  const [selectedProduct, setSelectedProduct] = useState({});
+  // const products = useSelector((state) => state.product.product);
 
-  const getSelectedProduct = (id) => {
-    for (let i = 0; i < products.length; i++) {
-      if (products[i].id == id) return products[i];
-    }
-  }
-  const selectedProduct = getSelectedProduct(id);
+  // const getSelectedProduct = (id) => {
+  //   for (let i = 0; i < products.length; i++) {
+  //     if (products[i].id == id) return products[i];
+  //   }
+  // }
+  // const selectedProduct = getSelectedProduct(id);
 
-
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const res = await fetch(`https://dummyjson.com/products/${id}`);
+        const data = await res.json();
+        if (data) {
+          setSelectedProduct(data);
+          console.log(data);
+          
+        }
+      }
+      catch (e) {
+        console.log(e.message);
+      }
+    };
+    fetchProduct();
+  }, []);
 
 
   return (
