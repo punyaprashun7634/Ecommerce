@@ -64,7 +64,7 @@ const SingleProduct = () => {
             <p className="category">{selectedProduct.category}</p>
           </div>
           <p className='description'>{selectedProduct.description}</p>
-          <p className='stock'><span className="quantity">{selectedProduct.stock} items left in stock</span></p>
+          <p className='stock'><span className="quantity">{selectedProduct.stock}</span>items left in stock</p>
           <h2 className="price-box text-xl font-bold"><span className='unit'>$</span><span className="price">{selectedProduct.price}</span></h2>
           {/* button box */}
           <div className="btn-box w-full flex items-center gap-6">
