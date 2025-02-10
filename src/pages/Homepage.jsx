@@ -5,6 +5,7 @@ const Homepage = () => {
   return (
     <div className="hompage w-full flex flex-col">
         <Navbar />
+        <div id="popup-box"></div>
         <Store/>
         <Footer />
     </div>
