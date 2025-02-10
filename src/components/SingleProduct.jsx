@@ -10,6 +10,7 @@ import { addToCart } from '../store/cartSlice';
 const SingleProduct = () => {
   const dispatch = useDispatch();
   const wishlists = useSelector((state) => state.wishlist);
+  const cart = useSelector((state) => state.cart);
   const HandleWishlist = (e, item) => {
     e.stopPropagation();
     if (isPresentInWishlist(item.id)) {
@@ -21,8 +22,8 @@ const SingleProduct = () => {
 
   const HandleAddtoCart = (e, item) => {
     e.stopPropagation();
-    if (isPresentInWishlist(item.id)) {
-      alert("item already present in the wishlist!");
+    if (isPresentInCart(item.id)) {
+      alert("item already present in the cart!");
     }
     else
       dispatch(addToCart(item));
@@ -30,6 +31,13 @@ const SingleProduct = () => {
   const isPresentInWishlist = (id) => {
     for (let i = 0; i < wishlists.length; i++) {
       if (wishlists[i].id === id)
+        return true;
+    }
+    return false;
+  }
+  const isPresentInCart = (id) => {
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].id === id)
         return true;
     }
     return false;
@@ -68,7 +76,7 @@ const SingleProduct = () => {
       <div className="product-details-view px-8 py-8 flex flex-col items-center flex-grow min-w-[450px">
         <div className="product-details flex flex-col gap-6 w-full max-w-[400px]">
           <div className="heading">
-            <h1 className='product-name-box text-2xl font-semibold flex items-center gap-4'> <span className='product-name'>{selectedProduct.title}</span> <span className='rating text-sm flex items-center'>{selectedProduct.rating} ⭐</span> </h1>
+            <h1 className='product-name-box text-2xl font-semibold flex items-center gap-4'> <span className='product-name'>{selectedProduct.title}</span> <span className='rating-box text-sm flex items-center'><span className="rating">{selectedProduct.rating}</span> ⭐</span> </h1>
             <p className="category">{selectedProduct.category}</p>
           </div>
           <p className='description'>{selectedProduct.description}</p>

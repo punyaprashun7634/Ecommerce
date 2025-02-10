@@ -11,6 +11,7 @@ const ProductView = ({ products }) => {
   const dispatch = useDispatch();
   const Navigate = useNavigate();
   const wishlists = useSelector((state) => state.wishlist);
+  const cart = useSelector((state) => state.cart);
   const HandleWishlist = (e, item) => {
     e.stopPropagation();
     if (isPresentInWishlist(item.id)) {
@@ -22,8 +23,8 @@ const ProductView = ({ products }) => {
 
   const HandleAddtoCart = (e, item) => {
     e.stopPropagation();
-    if (isPresentInWishlist(item.id)) {
-      alert("item already present in the wishlist!");
+    if (isPresentInCart(item.id)) {
+      alert("item already present in the cart!");
     }
     else
       dispatch(addToCart(item));
@@ -31,6 +32,13 @@ const ProductView = ({ products }) => {
   const isPresentInWishlist = (id) => {
     for (let i = 0; i < wishlists.length; i++) {
       if (wishlists[i].id === id)
+        return true;
+    }
+    return false;
+  }
+  const isPresentInCart = (id) => {
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].id === id)
         return true;
     }
     return false;
