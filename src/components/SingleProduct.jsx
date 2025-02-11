@@ -98,8 +98,8 @@ const SingleProduct = () => {
             </div>
           </div>
         </div>
-        <div id="personalization"></div>
       </div>
+      <div id="personalization"></div>
     </div>
   )
 }
