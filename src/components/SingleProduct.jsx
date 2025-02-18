@@ -100,6 +100,7 @@ const SingleProduct = () => {
         </div>
       </div>
       <div id="personalization"></div>
+      <div id="survey"></div>
     </div>
   )
 }
