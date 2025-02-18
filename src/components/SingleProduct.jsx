@@ -54,7 +54,7 @@ const SingleProduct = () => {
         if (data) {
           setSelectedProduct(data);
           console.log(data);
-          
+
         }
       }
       catch (e) {
@@ -66,35 +66,37 @@ const SingleProduct = () => {
 
 
   return (
-    <div className='single-product min-h-screen w-full px-6 py-8 flex gap-10 flex-wrap' id={selectedProduct.sku}>
-      <div className="product-img-view w-full flex items-center justify-center px-8 py-4 md:block md:w-fit">
-        <div className="img-box w-96 h-96 flex items-center justify-center">
-          <img className='w-full h-full object-contain' src={selectedProduct.thumbnail} alt="" />
-        </div>
-
-      </div>
-      <div className="product-details-view px-8 py-8 flex flex-col items-center flex-grow min-w-[450px">
-        <div className="product-details flex flex-col gap-6 w-full max-w-[400px]">
-          <div className="heading">
-            <h1 className='product-name-box text-2xl font-semibold flex items-center gap-4'> <span className='product-name'>{selectedProduct.title}</span> <span className='rating-box text-sm flex items-center'><span className="rating">{selectedProduct.rating}</span> ⭐</span> </h1>
-            <p className="category">{selectedProduct.category}</p>
+    <div className="wrapper w-full min-h-screen px-6 md:pl-16 lg:pl-24 pr-8 py-8 flex flex-col gap-4">
+      <div className='single-product w-full flex gap-10 flex-wrap' id={selectedProduct.sku}>
+        <div className="product-img-view flex items-center justify-center px-8 py-4 flex-1">
+          <div className="img-box w-96 h-96 flex items-center justify-center">
+            <img className='w-full h-full object-contain' src={selectedProduct.thumbnail} alt="" />
           </div>
-          <p className='description'>{selectedProduct.description}</p>
-          <p className='stock'><span className="quantity">{selectedProduct.stock}</span>items left in stock</p>
-          <h2 className="price-box text-xl font-bold"><span className='unit'>$</span><span className="price">{selectedProduct.price}</span></h2>
-          {/* button box */}
-          <div className="btn-box w-full flex items-center gap-6">
-            <div className="wishlist" onClick={(e) => HandleWishlist(e, selectedProduct)}>
-              {
-                (isPresentInWishlist(selectedProduct.id))
-                  ? <FaHeart size={32} color={'red'} className='cursor-pointer' />
-                  : <CiHeart size={32} color={'red'} className='cursor-pointer' />
-              }
+
+        </div>
+        <div className="product-details-view px-8 py-8 flex flex-col items-center flex-grow min-w-[450px]">
+          <div className="product-details flex flex-col gap-6 w-full max-w-[400px]">
+            <div className="heading">
+              <h1 className='product-name-box text-2xl font-semibold flex items-center gap-4'> <span className='product-name'>{selectedProduct.title}</span> <span className='rating-box text-sm flex items-center'><span className="rating">{selectedProduct.rating}</span> ⭐</span> </h1>
+              <p className="category">{selectedProduct.category}</p>
             </div>
-            <div className="addCart flex gap-2 text-white color-white bg-[#FF3E6C] px-4 py-2 rounded-md cursor-pointer"
-              onClick={(e) => HandleAddtoCart(e, selectedProduct)}>
-              <HiOutlineShoppingBag size={24} />
-              <p className="buy">Add to Cart</p>
+            <p className='description'>{selectedProduct.description}</p>
+            <p className='stock'><span className="quantity">{selectedProduct.stock}</span>items left in stock</p>
+            <h2 className="price-box text-xl font-bold"><span className='unit'>$</span><span className="price">{selectedProduct.price}</span></h2>
+            {/* button box */}
+            <div className="btn-box w-full flex items-center gap-6">
+              <div className="wishlist" onClick={(e) => HandleWishlist(e, selectedProduct)}>
+                {
+                  (isPresentInWishlist(selectedProduct.id))
+                    ? <FaHeart size={32} color={'red'} className='cursor-pointer' />
+                    : <CiHeart size={32} color={'red'} className='cursor-pointer' />
+                }
+              </div>
+              <div className="addCart flex gap-2 text-white color-white bg-[#FF3E6C] px-4 py-2 rounded-md cursor-pointer"
+                onClick={(e) => HandleAddtoCart(e, selectedProduct)}>
+                <HiOutlineShoppingBag size={24} />
+                <p className="buy">Add to Cart</p>
+              </div>
             </div>
           </div>
         </div>
