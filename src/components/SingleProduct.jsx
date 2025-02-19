@@ -67,7 +67,7 @@ const SingleProduct = () => {
 
   return (
     <div className="wrapper w-full min-h-screen px-6 md:pl-16 lg:pl-24 pr-8 py-8 flex flex-col gap-4">
-      <div className='single-product w-full flex gap-10 flex-wrap' id={selectedProduct.sku}>
+      <div className='single-product w-full flex gap-10 flex-wrap' id={selectedProduct.sku} data-brand={selectedProduct?.brand}>
         <div className="product-img-view flex items-center justify-center px-8 py-4 flex-1">
           <div className="img-box w-96 h-96 flex items-center justify-center">
             <img className='w-full h-full object-contain' src={selectedProduct.thumbnail} alt="" />
@@ -76,12 +76,20 @@ const SingleProduct = () => {
         </div>
         <div className="product-details-view px-8 py-8 flex flex-col items-center flex-grow min-w-[450px]">
           <div className="product-details flex flex-col gap-6 w-full max-w-[400px]">
-            <div className="heading">
+            <div className="heading flex flex-col gap-2">
               <h1 className='product-name-box text-2xl font-semibold flex items-center gap-4'> <span className='product-name'>{selectedProduct.title}</span> <span className='rating-box text-sm flex items-center'><span className="rating">{selectedProduct.rating}</span> ⭐</span> </h1>
-              <p className="category">{selectedProduct.category}</p>
+              <div className="category-box flex gap-4 text-xs">
+                {
+                  selectedProduct && selectedProduct.tags
+                  ? (selectedProduct.tags.map((category) => {
+                    return <p className="category">{category.toUpperCase()}</p>
+                  }))
+                  : <p className="category">{selectedProduct.category}</p>
+                }
+              </div>
             </div>
             <p className='description'>{selectedProduct.description}</p>
-            <p className='stock'><span className="quantity">{selectedProduct.stock}</span>items left in stock</p>
+            <p className='stock'><span className="quantity">{selectedProduct.stock}</span> items left in stock</p>
             <h2 className="price-box text-xl font-bold"><span className='unit'>$</span><span className="price">{selectedProduct.price}</span></h2>
             {/* button box */}
             <div className="btn-box w-full flex items-center gap-6">
