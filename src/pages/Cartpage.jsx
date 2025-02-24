@@ -48,7 +48,7 @@ const Cartpage = () => {
           <div className="itemView w-full md:w-[49%] max-w-[580px] flex flex-col gap-4">
             {
               cartStorage.map((cartItem) => {
-                return <div className="item px-6 bg-white rounded-md shadow-md md:shadow-lg xl:shadow-xl py-4 flex flex-col gap-4" key={cartItem.id}>
+                return <div className="item px-6 bg-white rounded-md shadow-md md:shadow-lg xl:shadow-xl py-4 flex flex-col gap-4" key={cartItem.id} id={cartItem.id}>
                   <div className="item-details flex gap-3 md:gap-8 justify-between flex-col md:flex-row md:justify-start items-center">
                     <div className="item-image object-contain w-40 md:32 aspect-[1/1.2] overflow-hidden flex justify-center items-center">
                       <img src={cartItem.thumbnail} alt="" className='object-cover' />
