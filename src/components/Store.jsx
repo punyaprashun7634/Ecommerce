@@ -33,7 +33,7 @@ const Store = () => {
 
     if (loading) {
         return <div className='loading-box w-full h-[73vh] flex items-center justify-center text-center text-2xl'>
-            <div class="border-gray-300 h-20 w-20 animate-spin rounded-full border-8 border-t-[#EF4444]" />
+            <div className="border-gray-300 h-20 w-20 animate-spin rounded-full border-8 border-t-[#EF4444]" />
         </div>;
     }
     if (error !== null) {
