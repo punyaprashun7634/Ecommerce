@@ -42,6 +42,11 @@ const Navbar = () => {
               <p className="text">Bag</p>
             </div>
           </Link>
+          <Link to='/login'>
+            <button className="bg-red-500 px-4 py-2 rounded-md text-white">
+              Login
+            </button>
+          </Link>
         </div>
         <div className={`link-menu absolute flex-col gap-4 items-end px-12 py-8 z-10 top-0 left-0 w-full bg-white `+(showMenu ? 'flex' : 'hidden')}>
           <RxCross1 size={20} onClick={HandleCloseMenu}/>
