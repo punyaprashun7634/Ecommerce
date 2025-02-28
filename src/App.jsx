@@ -18,6 +18,7 @@ const App = () => {
         <Route path='/forget-password' element={<ForgetPassword />}></Route>
 
       </Routes>
+      <ToastContainer />
     </BrowserRouter>
   )
 }
