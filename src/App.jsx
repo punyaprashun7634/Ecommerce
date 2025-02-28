@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Homepage, Cartpage, Checkout, Profile, WishListPage, ViewProduct, OrderPage, Login, Signup, ForgetPassword } from './pages';
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
   return (

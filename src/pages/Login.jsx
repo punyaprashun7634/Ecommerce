@@ -23,6 +23,9 @@ const Login = () => {
         event.preventDefault();
         try {
             const user = await signInWithEmailAndPassword(auth, loginData.email, loginData.password);
+            toast.success("Login Successful!",{
+                position: "top-center",
+            })
             Navigate('/');
         }
         catch (error) {
