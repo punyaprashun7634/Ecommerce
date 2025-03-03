@@ -87,8 +87,8 @@ const Signup = () => {
                         <InputBox id={"email"} name={"email"} HandleClick={() => HandleClick(event)} type='email' text={"Email Id:"} value={registerData.email} />
                         <InputBox id={"password"} name={"password"} HandleClick={() => HandleClick(event)} type='password' text={"Password:"} value={registerData.password} />
                         <InputBox id={"cnfPass"} name={"cnfPass"} HandleClick={() => HandleClick(event)} type='password' text={"Confirm Password:"} value={registerData.cnfPass} />
-                        <button className='bg-black mt-3 text-white px-6 py-4 w-full rounded-md'>Login</button>
-                        <p className="text">Already have an account ? <Link to='/login' className='font-semibold'>Singup here</Link></p>
+                        <button className='bg-black mt-3 text-white px-6 py-4 w-full rounded-md'>Signup</button>
+                        <p className="text">Already have an account ? <Link to='/login' className='font-semibold'>Login here</Link></p>
                     </form>
                 </div>
             </div>
