@@ -78,7 +78,7 @@ const Signup = () => {
         <>
             <Navbar />
             <div className='w-full px-6 mt-5 flex flex-col items-center justify-center'>
-                <div className="form-box w-[450px] shadow-lg rounded-md flex gap-5 flex-col items-center px-4 py-4">
+                <div className="form-box w-[450px] shadow-lg rounded-md flex gap-5 flex-col items-center px-4 py-4" id="signup">
                     <form className='w-full px-8 py-8 flex justify-center flex-col items-center max-w-[400px] max-h-[650px] bg-white rounded-md gap-3'
                         onSubmit={HandleSubmit}
                     >
@@ -88,7 +88,7 @@ const Signup = () => {
                         <InputBox id={"password"} name={"password"} HandleClick={() => HandleClick(event)} type='password' text={"Password:"} value={registerData.password} />
                         <InputBox id={"cnfPass"} name={"cnfPass"} HandleClick={() => HandleClick(event)} type='password' text={"Confirm Password:"} value={registerData.cnfPass} />
                         <button className='bg-black mt-3 text-white px-6 py-4 w-full rounded-md'>Login</button>
-                        <p className="text">Already have an account ? <Link to='/login' className='font-semibold'>Login here</Link></p>
+                        <p className="text">Already have an account ? <Link to='/login' className='font-semibold'>Singup here</Link></p>
                     </form>
                 </div>
             </div>

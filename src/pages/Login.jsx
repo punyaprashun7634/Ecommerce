@@ -38,7 +38,7 @@ const Login = () => {
         <>
             <Navbar />
             <div className='bg-white shadow-lg w-full px-6 flex flex-col items-center mt-5 justify-center'>
-                <div className="form-box w-[450px] shadow-lg rounded-md flex gap-5 flex-col items-center px-4 py-4">
+                <div className="form-box w-[450px] shadow-lg rounded-md flex gap-5 flex-col items-center px-4 py-4" id="login">
                     <form className='w-full px-8 py-8 flex justify-center flex-col items-center max-w-[400px] max-h-[650px] bg-white rounded-md gap-3'
                         onSubmit={HandleSubmit}
                     >
