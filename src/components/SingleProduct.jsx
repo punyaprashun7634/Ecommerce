@@ -44,17 +44,6 @@ const SingleProduct = () => {
   }
 
   const { id } = useParams();
-  useEffect(()=>{
-    try{
-      _etmc.push(["setOrgId", "514035465"]);
-      _etmc.push(["trackPageview",{
-        "item" : `sku-${id}`
-      }])
-    }catch(error){
-      console.log(`Error with _etmc : `+error.message);
-      
-    }
-  },[])
   const [selectedProduct, setSelectedProduct] = useState({});
 
   useEffect(() => {

@@ -14,6 +14,14 @@
       _etmc.push(["setOrgId", "514035465"]);
       _etmc.push(["trackPageView"]);
     </script>
+    <script>
+      if(/\/product\/\d+/.exec(location.pathname)){
+        _etmc.push(["setOrgId", "514035465"]);
+        _etmc.push(["trackPageview",{
+          "item" : `sku-${id}`
+        }])
+      }
+    </script>
 
     <script
       type="text/javascript"
