@@ -6,6 +6,7 @@ import { addToWishlist, removeFromWishlist } from '../store/wishlistSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../store/cartSlice';
 import { useNavigate } from 'react-router-dom';
+import { trackProductView } from '../hooks/useProductTracking';
 
 const ProductView = ({ products }) => {
   const dispatch = useDispatch();
@@ -45,8 +46,11 @@ const ProductView = ({ products }) => {
   }
 
   const HandleViewProduct = (id) => {
+    trackProductView(`sku-${id}`);
     Navigate(`/product/${id}`)
   }
+
+
   return (
     products && products.length
       ? (<div className='store w-full px-6 py-8 grid  lg:grid-cols-3 xl:grid-cols-4 sm:grid-cols-2 gap-y-10 gap-x-3 '>
