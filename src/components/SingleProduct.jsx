@@ -46,6 +46,7 @@ const SingleProduct = () => {
   const { id } = useParams();
   useEffect(()=>{
     try{
+      _etmc.push(["setOrgId", "514035465"]);
       _etmc.push(["trackPageview",{
         "item" : `sku-${id}`
       }])
