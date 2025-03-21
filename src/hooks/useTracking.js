@@ -6,11 +6,14 @@ const useTracking = () => {
 
   useEffect(() => {
     if (!window._etmc) window._etmc = [];
-    
-    window._etmc.push(["setOrgId", "514035465"]);
-    window._etmc.push(["trackPageView"]);
 
-  }, [location.pathname]); // Runs when route changes
+    // Set Org ID
+    window._etmc.push(["setOrgId", "MID"]);
+
+    // Track Page View when route changes
+    window._etmc.push(["trackPageView", { path: location.pathname }]);
+
+  }, [location.pathname]); // Runs every time the route changes
 };
 
 export default useTracking;

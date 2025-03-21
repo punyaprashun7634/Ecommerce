@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
 import { addToWishlist, removeFromWishlist } from '../store/wishlistSlice';
 import { addToCart } from '../store/cartSlice';
+import { trackProductView } from '../hooks/useProductTracking';
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
@@ -53,8 +54,7 @@ const SingleProduct = () => {
         const data = await res.json();
         if (data) {
           setSelectedProduct(data);
-          console.log(data);
-
+          trackProductView(`sku~${data.id}`);
         }
       }
       catch (e) {
@@ -81,10 +81,10 @@ const SingleProduct = () => {
               <div className="category-box flex gap-4 text-xs">
                 {
                   selectedProduct && selectedProduct.tags
-                  ? (selectedProduct.tags.map((category) => {
-                    return <p className="category">{category.toUpperCase()}</p>
-                  }))
-                  : <p className="category">{selectedProduct.category}</p>
+                    ? (selectedProduct.tags.map((category) => {
+                      return <p className="category">{category.toUpperCase()}</p>
+                    }))
+                    : <p className="category">{selectedProduct.category}</p>
                 }
               </div>
             </div>
