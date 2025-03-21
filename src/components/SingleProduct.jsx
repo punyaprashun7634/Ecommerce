@@ -54,7 +54,7 @@ const SingleProduct = () => {
         const data = await res.json();
         if (data) {
           setSelectedProduct(data);
-          trackProductView(`sku~${data.id}`);
+          trackProductView(`sku-${data.id}`);
         }
       }
       catch (e) {
