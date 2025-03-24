@@ -68,7 +68,7 @@ const Signup = () => {
             }
             catch (error) {
                 toast.error(error.message, {
-                    position: "bottom-center",
+                    position: "top-center",
                 })
             }
         }
