@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import { addToWishlist, removeFromWishlist } from '../store/wishlistSlice';
 import { addToCart } from '../store/cartSlice';
 import { trackProductView } from '../hooks/useProductTracking';
+import { toast } from 'react-toastify';
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
@@ -24,10 +25,17 @@ const SingleProduct = () => {
   const HandleAddtoCart = (e, item) => {
     e.stopPropagation();
     if (isPresentInCart(item.id)) {
-      alert("item already present in the cart!");
+      toast.error(`${item.title} is already present in the cart!`,{
+        position: "top-center"
+      })
     }
-    else
+    else{
+      toast.success(`${item.title} added to cart!`,{
+        position: "top-center"
+      })
       dispatch(addToCart(item));
+
+    }
   }
   const isPresentInWishlist = (id) => {
     for (let i = 0; i < wishlists.length; i++) {

@@ -16,11 +16,17 @@ const Navbar = () => {
     setShowMenu(false);
   }
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [displayName, setDisplayName] = useState("");
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      if (user) setIsLoggedIn(true);
-      else setIsLoggedIn(false);
+      if (user){
+        setDisplayName(user.displayName);
+        setIsLoggedIn(true);
+      }else{
+        setDisplayName("");
+        setIsLoggedIn(false);
+      }
     })
   }, [])
 
@@ -38,15 +44,20 @@ const Navbar = () => {
   };
   return (
     <div className='navbar w-full sticky z-20 bg-white top-0 left-0 h-20 shadow-md flex items-center justify-between px-8'>
+      
       <Link to='/'>
         <div className="logo flex gap-4">
           <RxCube size={50} />
           <p className="company-text flex items-center text-xl font-semibold"><span className='text-red-500'>Cart</span>-On</p>
         </div>
       </Link>
+      {
+        displayName&&<p className='hidden md:block text-red-500 text-xl'>Welcome, <span className='text-black text-lg'>{displayName}!</span></p>
+      }
       <div className="hamburger md:hidden">
         <RxHamburgerMenu size={32} onClick={HandleMenu} />
       </div>
+      
       <div className="button-box hidden items-center gap-10 text-xs font-bold md:flex">
         <Link to='/profile'>
           <div className="btn flex flex-col items-center cursor-pointer">

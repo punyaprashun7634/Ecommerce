@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Footer, InputBox, Navbar } from '../components';
 import { Link, useNavigate } from 'react-router-dom';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../firebase/firebase'
 import { toast } from 'react-toastify';
 const Signup = () => {
@@ -59,12 +59,22 @@ const Signup = () => {
         event.preventDefault();
         if (validateForm()) {
             try {
-                const user = await createUserWithEmailAndPassword(auth, registerData.email, registerData.password);
-                toast.success("User registered Successfully!", {
-                    position: "top-center",
-                })
-                setRegisterData(initailState);
-                Navigate('/login');
+                createUserWithEmailAndPassword(auth, registerData.email, registerData.password)
+                    .then((userCredential) => {
+                        const user = userCredential.user;
+                        return updateProfile(user, { displayName: registerData.name });
+                    })
+                    .then(() => {
+                        console.log("Display name set successfully:", auth.currentUser.displayName);
+                        toast.success("User registered Successfully!", {
+                            position: "top-center",
+                        })
+                        setRegisterData(initailState);
+                        Navigate('/');
+                    })
+                    .catch((error) => {
+                        console.error("Error updating profile:", error);
+                    });
             }
             catch (error) {
                 toast.error(error.message, {
@@ -77,8 +87,8 @@ const Signup = () => {
     return (
         <>
             <Navbar />
-            <div className='w-full px-6 mt-5 flex flex-col items-center justify-center'>
-                <div className="form-box w-[450px] shadow-lg rounded-md flex gap-5 flex-col items-center px-4 py-4" id="signup">
+            <div className='w-full px-6 mt-1 flex flex-col items-center justify-center'>
+                <div className="form-box w-[450px] shadow-xl rounded-md flex gap-5 flex-col items-center px-4 py-4" id="signup">
                     <form className='w-full px-8 py-8 flex justify-center flex-col items-center max-w-[400px] max-h-[650px] bg-white rounded-md gap-3'
                         onSubmit={HandleSubmit}
                     >
