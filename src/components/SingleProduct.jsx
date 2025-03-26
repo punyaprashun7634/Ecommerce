@@ -62,7 +62,7 @@ const SingleProduct = () => {
   const fetchRecommendations = () => {
     $.ajax({
       type: 'GET',
-      url: `https://514035465.recs.igodigital.com/a/v2/514035465/product/recommend.json?item=sku-${selectedProduct.id}&callback=myJsFunctionName`,
+      url: `https://514035465.recs.igodigital.com/a/v2/514035465/product/recommend.json?item=sku-${selectedProduct.category}&callback=myJsFunctionName`,
       dataType: 'jsonp',
       jsonpCallback: 'myJsFunctionName',
       crossDomain: true,
@@ -153,7 +153,7 @@ const SingleProduct = () => {
                   <div className="img-box object-contain w-[50%] max-w-48 aspect-[1/1.2] overflow-hidden flex justify-center">
                     <img src={item.image_link} alt="" className='object-cover' />
                   </div>
-                  <p className="rec-item-price-box text-lg"><span className='currency'>$</span><span className='ec-item-price'>{item.regular_price}</span></p>
+                  <p className="rec-item-price-box text-sm"><span className='currency'>$</span><span className='ec-item-price'>{item.regular_price}</span></p>
                   <p className="rec-productName max-w-72 text-center">{item.name}</p>
                 </a>
               })
