@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import $ from 'jquery';
 import { CiHeart } from 'react-icons/ci';
 import { FaHeart } from 'react-icons/fa';
 import { HiOutlineShoppingBag } from 'react-icons/hi2';
@@ -25,12 +26,12 @@ const SingleProduct = () => {
   const HandleAddtoCart = (e, item) => {
     e.stopPropagation();
     if (isPresentInCart(item.id)) {
-      toast.error(`${item.title} is already present in the cart!`,{
+      toast.error(`${item.title} is already present in the cart!`, {
         position: "top-center"
       })
     }
-    else{
-      toast.success(`${item.title} added to cart!`,{
+    else {
+      toast.success(`${item.title} added to cart!`, {
         position: "top-center"
       })
       dispatch(addToCart(item));
@@ -54,6 +55,28 @@ const SingleProduct = () => {
 
   const { id } = useParams();
   const [selectedProduct, setSelectedProduct] = useState({});
+  const [recommendedProducts, setrecommendedProducts] = useState({});
+
+  // jsonp method to get the recommended products
+
+  const fetchRecommendations = () => {
+    $.ajax({
+      type: 'GET',
+      url: `https://514035465.recs.igodigital.com/a/v2/514035465/product/recommend.json?item=sku-${selectedProduct.id}&callback=myJsFunctionName`,
+      dataType: 'jsonp',
+      jsonpCallback: 'myJsFunctionName',
+      crossDomain: true,
+      success: (data) => {
+        setrecommendedProducts(data[0]);
+        console.log("data", data[0]);
+
+      },
+      error: (err) => {
+        console.error('Error fetching data:', err);
+      },
+    });
+  }
+
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -70,6 +93,7 @@ const SingleProduct = () => {
       }
     };
     fetchProduct();
+    fetchRecommendations();
   }, []);
 
 
@@ -89,8 +113,8 @@ const SingleProduct = () => {
               <div className="category-box flex gap-4 text-xs">
                 {
                   selectedProduct && selectedProduct.tags
-                    ? (selectedProduct.tags.map((category) => {
-                      return <p className="category">{category.toUpperCase()}</p>
+                    ? (selectedProduct.tags.map((category, index) => {
+                      return <p className="category" key={index}>{category.toUpperCase()}</p>
                     }))
                     : <p className="category">{selectedProduct.category}</p>
                 }
@@ -117,6 +141,26 @@ const SingleProduct = () => {
           </div>
         </div>
       </div>
+      {
+        recommendedProducts &&
+        <div id={recommendedProducts.name} className='w-full my-8 flex flex-col gap-8'>
+          <h1 className="rec-title text-lg md:text-xl lg:text-2xl font-semibold text-center">{recommendedProducts.title}</h1>
+          <div className="product-recommendation-wrapper grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+            {
+              recommendedProducts.items &&
+              recommendedProducts.items.map((item, index) => {
+                return <a className="item-container flex flex-col gap-2 items-center" href={item.link}>
+                  <div className="img-box object-contain w-[50%] max-w-48 aspect-[1/1.2] overflow-hidden flex justify-center">
+                    <img src={item.image_link} alt="" className='object-cover' />
+                  </div>
+                  <p className="rec-item-price-box text-lg"><span className='currency'>$</span><span className='ec-item-price'>{item.regular_price}</span></p>
+                  <p className="rec-productName max-w-72 text-center">{item.name}</p>
+                </a>
+              })
+            }
+          </div>
+        </div>
+      }
       <div id="personalization"></div>
       <div id="survey"></div>
     </div>
