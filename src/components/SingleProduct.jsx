@@ -101,12 +101,12 @@ const SingleProduct = () => {
     <div className="wrapper w-full min-h-screen px-6 md:pl-16 lg:pl-24 pr-8 py-8 flex flex-col gap-4">
       <div className='single-product w-full flex gap-10 flex-wrap' id={selectedProduct.sku} data-brand={selectedProduct?.brand}>
         <div className="product-img-view flex items-center justify-center px-8 py-4 flex-1">
-          <div className="img-box w-96 h-96 flex items-center justify-center">
+          <div className="img-box w-96 aspect-square max-w-[240px] flex items-center justify-center">
             <img className='w-full h-full object-contain' src={selectedProduct.thumbnail} alt="" />
           </div>
 
         </div>
-        <div className="product-details-view px-8 py-8 flex flex-col items-center flex-grow min-w-[450px]">
+        <div className="product-details-view px-8 py-8 flex flex-col items-center flex-grow min-w-[320px]">
           <div className="product-details flex flex-col gap-6 w-full max-w-[400px]">
             <div className="heading flex flex-col gap-2">
               <h1 className='product-name-box text-2xl font-semibold flex items-center gap-4'> <span className='product-name'>{selectedProduct.title}</span> <span className='rating-box text-sm flex items-center'><span className="rating">{selectedProduct.rating}</span> ⭐</span> </h1>
