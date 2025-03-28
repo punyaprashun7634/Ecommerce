@@ -6,6 +6,7 @@ import { addToWishlist, removeFromWishlist } from '../store/wishlistSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../store/cartSlice';
 import { useNavigate } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const ProductView = ({ products }) => {
   const dispatch = useDispatch();
@@ -58,7 +59,8 @@ const ProductView = ({ products }) => {
               onClick={() => HandleViewProduct(itemData.id)}
             >
               <div className="img-box object-contain w-[90%] aspect-[1/1.2] overflow-hidden flex justify-center">
-                <img src={itemData.thumbnail} alt="" className='object-cover' />
+                <LazyLoadImage src={itemData.thumbnail} alt={itemData.title} className='object-cover' />
+                {/* <img src={itemData.thumbnail} alt="" className='object-cover' /> */}
               </div>
               <p className="title text-sm text-center font-medium">{itemData.title}</p>
               <p className="price text-lg text-center font-semibold">${itemData.price}</p>

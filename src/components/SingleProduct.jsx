@@ -9,6 +9,7 @@ import { addToWishlist, removeFromWishlist } from '../store/wishlistSlice';
 import { addToCart } from '../store/cartSlice';
 import { trackProductView } from '../hooks/useProductTracking';
 import { toast } from 'react-toastify';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
@@ -102,7 +103,8 @@ const SingleProduct = () => {
       <div className='single-product w-full flex gap-10 flex-wrap' id={selectedProduct.sku} data-brand={selectedProduct?.brand}>
         <div className="product-img-view flex items-center justify-center px-8 py-4 flex-1">
           <div className="img-box w-96 aspect-square max-w-[240px] flex items-center justify-center">
-            <img className='w-full h-full object-contain' src={selectedProduct.thumbnail} alt="" />
+            <LazyLoadImage src={selectedProduct.thumbnail} alt={selectedProduct.title} className='w-full h-full object-contain' />
+            {/* <img className='w-full h-full object-contain' src={selectedProduct.thumbnail} alt="" /> */}
           </div>
 
         </div>
@@ -151,7 +153,8 @@ const SingleProduct = () => {
               recommendedProducts.items.map((item, index) => {
                 return <a className="item-container flex flex-col gap-2 items-center" href={item.link}>
                   <div className="img-box object-contain w-[50%] max-w-48 aspect-[1/1.2] overflow-hidden flex justify-center">
-                    <img src={item.image_link} alt="" className='object-cover' />
+                    <LazyLoadImage src={item.image_link} alt={item.name} className='object-cover' />
+                    {/* <img src={item.image_link} alt="" className='object-cover' /> */}
                   </div>
                   <p className="rec-item-price-box text-sm"><span className='currency'>$</span><span className='ec-item-price'>{item.regular_price}</span></p>
                   <p className="rec-productName max-w-72 text-center">{item.name}</p>
